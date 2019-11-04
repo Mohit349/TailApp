@@ -32,6 +32,15 @@ app.get('/',(req,res)=>{
 
 })
 
+
+app.get('/runningstatus',(req,res)=>{
+    res.status(200).json({
+        status:"success",
+        data: "Server Running"
+    })
+
+})
+
 const server=app.listen(5000,()=>{
     console.log("Server is runing at port 5000");
 });
