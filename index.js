@@ -23,14 +23,15 @@ const tailCommandInUnix=(n=10)=>{
     }
 
 if(process.env.NODE_ENV==="production"){
-    console.log("Server is serving at port 5000");
+    console.log("Server is serving.");
 app.get('*',(req,res)=>{
     res.sendFile(path.resolve(__dirname,'public','index.html'));
 })
 }
 
-const server=app.listen(6000,()=>{
-    console.log("Server is runing at port 5000");
+const PORT = process.env.PORT || 5050;
+const server=app.listen(PORT,()=>{
+    console.log("Server is runing at port",PORT);
 });
 const io=socket(server);
 io.on('connection',(socket)=>{
