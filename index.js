@@ -29,7 +29,7 @@ app.get('*',(req,res)=>{
 })
 }
 
-const server=app.listen(5000,()=>{
+const server=app.listen(6000,()=>{
     console.log("Server is runing at port 5000");
 });
 const io=socket(server);
