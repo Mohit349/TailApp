@@ -5,6 +5,7 @@ const express=require('express');
 const cors=require('cors');
 const app=express();
 app.use(cors());
+app.use(express.static('public'));
 const tailCommandInUnix=(n=10)=>{
     const data= fs.readFileSync(`./txt/test.txt`,'utf-8');
     const dataArr=data.split('\n');
@@ -21,25 +22,11 @@ const tailCommandInUnix=(n=10)=>{
     
     }
 
-app.get('/',(req,res)=>{
-    const output=tailCommandInUnix()
-    res.status(200).json({
-        status:"success",
-        data:{
-            output
-        }
-    })
-
+if(process.env.NODE_ENV==="production"){
+app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'public','index.html'));
 })
-
-
-app.get('/runningstatus',(req,res)=>{
-    res.status(200).json({
-        status:"success",
-        data: "Server Running"
-    })
-
-})
+}
 
 const server=app.listen(5000,()=>{
     console.log("Server is runing at port 5000");
