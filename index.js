@@ -23,6 +23,7 @@ const tailCommandInUnix=(n=10)=>{
     }
 
 if(process.env.NODE_ENV==="production"){
+    console.log("Server is serving at port 5000");
 app.get('*',(req,res)=>{
     res.sendFile(path.resolve(__dirname,'public','index.html'));
 })
